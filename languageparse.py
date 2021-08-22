@@ -1,29 +1,26 @@
 '''This script will fetch code languages for all repos from a Github organization.'''
 
-import urllib.request
+import requests
 import json
 
-def getResponse(url):
-    operUrl = urllib.request.urlopen(url)
-    if(operUrl.getcode()==200):
-        data = operUrl.read()
-        jsonData = json.loads(data)
-    else:
-        print("Error receiving data", operUrl.getcode())
-    return jsonData
+# gets repos
+def repo_fetch():
+    response = requests.get('https://api.github.com/orgs/newrelic/repos')
+    repos = response.json()
+    for i in repos:
+        repos.get['name']
 
-def main():
-
-    urlData ="https://api.github.com/orgs/newrelic/repos"
-    jsonData = getResponse(urlData)
-    # print the code language and repo name
-    for i in jsonData['repos']:
-        print(f'Language: {i["language"]["language_name"]} , Name : {i["name"]["repo_name"]}')
+# gets language 
+def lang_fetch():
+    response = requests.get('https://api.github.com/repos/newrelic/{repos}/languages')
+    data = response.json()
+    for i in data:
+        print (i)
 
 if __name__ == '__main__':
-    main()
-
+    lang_fetch()
+  
 # @TODO
-# resolve TypeError: list indices must be integers or slices, not str
-
-                  
+# iterate through all repos in the newrelic org
+                
+            
