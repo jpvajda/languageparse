@@ -3,24 +3,26 @@
 import requests
 import json
 
-# gets repos
+
 def repo_fetch():
+    '''gets repos'''
     response = requests.get('https://api.github.com/orgs/newrelic/repos')
     repos = response.json()
     for i in repos:
-        repos.get['name']
+        i.get['name']
 
-# gets language 
+
 def lang_fetch():
-    response = requests.get('https://api.github.com/repos/newrelic/{repos}/languages')
+    '''gets language'''
+    response = requests.get(
+        'https://api.github.com/repos/newrelic/{repos}/languages')
     data = response.json()
     for i in data:
-        print (i)
+        print(i)
+
 
 if __name__ == '__main__':
     lang_fetch()
-  
+
 # @TODO
 # iterate through all repos in the newrelic org
-                
-            
